@@ -1,3 +1,2 @@
-rootProject.name='Nanosemantics'
-include ':app'
-include ':robobank'
+include ':models', ':aars', ':app'
+
