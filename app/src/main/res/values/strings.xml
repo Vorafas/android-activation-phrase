@@ -1,5 +1,3 @@
 <resources>
-    <string name="app_name">Nanosemantics</string>
-    <string name="button_send_request">Отправить запрос</string>
-    <string name="press_play">Скажите активационную фразу</string>
+    <string name="app_name">AndroidSpeaker</string>
 </resources>

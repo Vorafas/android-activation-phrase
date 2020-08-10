@@ -1,3 +1,2 @@
-include ':models', ':phrasedetectordemo'
-include ':models', ':aars', ':app'
-
+include ':app'
+rootProject.name = "AndroidSpeaker"
