@@ -1,2 +1,3 @@
+include ':models', ':phrasedetectordemo'
 include ':models', ':aars', ':app'
 

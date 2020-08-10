@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".KaldiActivity">
+
+    <fragment
+        android:id="@+id/main_browse_fragment"
+        class="com.example.nanosemantics.KaldiFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="511dp"
+        android:layout_height="308dp"
+        android:layout_marginTop="10sp"
+        android:layout_weight="1"
+        android:textSize="18sp" />
+
+</LinearLayout>
