@@ -1,4 +1,4 @@
-package com.example.androidspeaker;
+package com.example.speakerdemo;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">SpeakerTest</string>
+    <string name="app_name">SpeakerDemo</string>
     <string name="press_play">Нажмите кнопку ОК для записи звука</string>
 </resources>

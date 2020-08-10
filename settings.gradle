@@ -1,2 +1,3 @@
+include ':speakerdemo'
 include ':app'
-rootProject.name = "AndroidSpeaker"
+rootProject.name = "SpeakerTest"
