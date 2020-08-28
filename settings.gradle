@@ -1,2 +1,2 @@
-include ':models', ':aars', ':app'
-
+rootProject.name = "SpeekerTest"
+include ':app'
