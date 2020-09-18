@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.AudioDeviceInfo;
+import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -49,7 +50,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        fileName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "test_audio_record.3gp";
+        fileName = getApplicationContext().getFileStreamPath("test_audio_record.wav")
+                .getPath();
     }
 
     @Override
@@ -110,9 +112,12 @@ public class MainActivity extends Activity {
     private void setupMediaRecorder() {
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setOutputFormat(AudioFormat.ENCODING_PCM_16BIT);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        mediaRecorder.setAudioChannels(1);
+        mediaRecorder.setAudioEncodingBitRate(128000);
+        mediaRecorder.setAudioSamplingRate(48000);
         mediaRecorder.setOutputFile(fileName);
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         AudioDeviceInfo[] adi = audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS);
@@ -145,6 +150,17 @@ public class MainActivity extends Activity {
             releasePlayer();
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setDataSource(fileName);
+
+            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            AudioDeviceInfo[] adi = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+            for (int i = 0; i < adi.length; i++) {
+                Log.d(TAG, "Device_" + i + " getType: " + adi[i].getType());
+                if (adi[i].getType() == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER) {
+                    mediaPlayer.setPreferredDevice(adi[i]);
+                    Log.d(TAG, "Выбран TYPE_BUILTIN_SPEAKER: " + adi[i].getType());
+                }
+            }
+
             mediaPlayer.prepare();
             mediaPlayer.start();
         } catch (Exception exc) {
