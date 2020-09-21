@@ -124,12 +124,10 @@ public class MainActivity extends Activity {
         for (int i = 0; i < adi.length; i++) {
             AudioDeviceInfo device = adi[i];
             Log.d(TAG, "Device_" + i + " getType: " + device.getType());
-            Log.d(TAG, "Device_" + i + " isSource: " + device.isSource());
             if (device.getType() == AudioDeviceInfo.TYPE_BUILTIN_MIC) {
-                if (mediaRecorder.setPreferredDevice(device)) {
-                    Log.d(TAG, "Выбран TYPE_BUILTIN_MIC: " + device.getType());
-                    break;
-                }
+                mediaRecorder.setPreferredDevice(device);
+                Log.d(TAG, "Выбран TYPE_BUILTIN_MIC: " + device.getType());
+                break;
             }
         }
     }
@@ -158,6 +156,7 @@ public class MainActivity extends Activity {
                 if (adi[i].getType() == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER) {
                     mediaPlayer.setPreferredDevice(adi[i]);
                     Log.d(TAG, "Выбран TYPE_BUILTIN_SPEAKER: " + adi[i].getType());
+                    break;
                 }
             }
 
